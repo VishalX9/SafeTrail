@@ -44,6 +44,8 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate required fields
     if (!touristId || !fullName) {
       toast({
         title: "❌ Missing information",
@@ -52,6 +54,28 @@ const Login = () => {
       });
       return;
     }
+
+    // Validate Tourist ID format (TID-YYYY-NE-XXXXXXXXX)
+    const tidPattern = /^TID-\d{4}-NE-\d{9}$/;
+    if (!tidPattern.test(touristId)) {
+      toast({
+        title: "❌ Invalid Tourist ID format",
+        description: "Tourist ID must follow format: TID-YYYY-NE-XXXXXXXXX (e.g., TID-2024-NE-123456789)",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate full name (at least 2 characters, letters and spaces only)
+    if (fullName.trim().length < 2) {
+      toast({
+        title: "❌ Invalid Name",
+        description: "Full name must be at least 2 characters long.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     loginMutation.mutate({ touristId, fullName });
   };
 
