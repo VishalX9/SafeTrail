@@ -2,9 +2,15 @@ import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { Navigation } from "@/components/Navigation";
 import { PanicButton } from "@/components/PanicButton";
+import { InteractiveMap } from "@/components/InteractiveMap";
+import { ScamDetailsUpdate } from "@/components/ScamDetailsUpdate";
+import { ReviewIncentives } from "@/components/ReviewIncentives";
+import { AuthorityMessenger } from "@/components/AuthorityMessenger";
+import { LostAndFound } from "@/components/LostAndFound";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Shield,
   Users,
@@ -13,6 +19,11 @@ import {
   Bot,
   MapPin,
   Clock,
+  Map,
+  MessageSquare,
+  Star,
+  Phone,
+  Search
 } from "lucide-react";
 
 interface User {
@@ -156,39 +167,79 @@ const Dashboard = () => {
       {/* Dashboard Grid */}
       <section className="py-12">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Safety Dashboard</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {dashboardItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Link key={item.title} href={item.href}>
-                  <Card className="h-full hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 cursor-pointer">
-                    <CardHeader>
-                      <div className="flex items-center justify-between">
-                        <div className={`${item.color} text-white p-3 rounded-lg`}>
-                          <Icon className="h-6 w-6" />
-                        </div>
-                        {item.urgent && (
-                          <Badge variant="destructive" className="text-xs">
-                            Important
-                          </Badge>
-                        )}
-                      </div>
-                      <CardTitle className="text-xl">{item.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-base">
-                        {item.description}
-                      </CardDescription>
-                      <Button className="w-full mt-4" variant="outline">
-                        Open {item.title}
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </Link>
-              );
-            })}
-          </div>
+          <h2 className="text-3xl font-bold text-center mb-12">Enhanced Safety Dashboard</h2>
+          
+          {/* NEW: Enhanced Dashboard with Tabs */}
+          <Tabs defaultValue="overview" className="space-y-6">
+            <TabsList className="grid w-full grid-cols-6">
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="map">Interactive Map</TabsTrigger>
+              <TabsTrigger value="scam-alerts">Scam Alerts</TabsTrigger>
+              <TabsTrigger value="reviews">Reviews & Rewards</TabsTrigger>
+              <TabsTrigger value="emergency">Emergency Contact</TabsTrigger>
+              <TabsTrigger value="lost-found">Lost & Found</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="overview">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {dashboardItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link key={item.title} href={item.href}>
+                      <Card className="h-full hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 cursor-pointer">
+                        <CardHeader>
+                          <div className="flex items-center justify-between">
+                            <div className={`${item.color} text-white p-3 rounded-lg`}>
+                              <Icon className="h-6 w-6" />
+                            </div>
+                            {item.urgent && (
+                              <Badge variant="destructive" className="text-xs">
+                                Important
+                              </Badge>
+                            )}
+                          </div>
+                          <CardTitle className="text-xl">{item.title}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <CardDescription className="text-base">
+                            {item.description}
+                          </CardDescription>
+                          <Button className="w-full mt-4" variant="outline">
+                            Open {item.title}
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  );
+                })}
+              </div>
+            </TabsContent>
+
+            {/* NEW: Interactive Map Tab */}
+            <TabsContent value="map">
+              <InteractiveMap />
+            </TabsContent>
+
+            {/* NEW: Scam Alerts Tab */}
+            <TabsContent value="scam-alerts">
+              <ScamDetailsUpdate />
+            </TabsContent>
+
+            {/* NEW: Reviews & Rewards Tab */}
+            <TabsContent value="reviews">
+              <ReviewIncentives />
+            </TabsContent>
+
+            {/* NEW: Emergency Contact Tab */}
+            <TabsContent value="emergency">
+              <AuthorityMessenger />
+            </TabsContent>
+
+            {/* NEW: Lost & Found Tab */}
+            <TabsContent value="lost-found">
+              <LostAndFound />
+            </TabsContent>
+          </Tabs>
         </div>
       </section>
 

@@ -64,6 +64,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { touristId } = req.params;
       const updateData = insertTouristProfileSchema.parse(req.body);
       
+      // NEW: Validate mandatory accommodation field
+      if (!updateData.accommodation || updateData.accommodation.trim().length === 0) {
+        return res.status(400).json({ 
+          message: "Place of Stay (accommodation) is mandatory for safety purposes" 
+        });
+      }
+      
       const existingProfile = await storage.getTouristProfile(touristId);
       if (!existingProfile) {
         return res.status(404).json({ message: "Profile not found" });

@@ -246,10 +246,14 @@ const Profile = () => {
                     <Input
                       id="accommodation"
                       data-testid="input-accommodation"
-                      placeholder="Hotel name, address in Guwahati, Shillong, etc."
+                      placeholder="Hotel name, address in Guwahati, Shillong, etc. *REQUIRED*"
                       value={profile.accommodation || ""}
                       onChange={(e) => setProfile(prev => ({ ...prev, accommodation: e.target.value }))}
+                      required
                     />
+                    <p className="text-xs text-red-600 mt-1">
+                      * Place of Stay is now mandatory for safety and emergency response purposes
+                    </p>
                   </div>
                   <div>
                     <Label htmlFor="itinerary">Travel Itinerary</Label>

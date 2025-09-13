@@ -25,7 +25,7 @@ export const touristProfiles = pgTable("tourist_profiles", {
     phone: string;
     relation: string;
   }>(),
-  accommodation: text("accommodation"),
+  accommodation: text("accommodation").notNull(), // NEW: Made accommodation mandatory
   itinerary: text("itinerary"),
   medicalConditions: text("medical_conditions"),
   languages: text("languages"),
