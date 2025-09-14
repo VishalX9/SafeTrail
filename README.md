@@ -27,6 +27,4 @@ npm run dev
 ### 4. Open in Browser
 By default, the app will be available at: http://127.0.0.1:5001
 
-cpp
-Copy code
-http://127.0.0.1:5001
+
