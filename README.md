@@ -20,6 +20,9 @@ Make sure you have Node.js installed.
 
 npm install in the terminal of downloaded folder 
 
+npm install --save-dev cross-env
+
+
 ### 3. Run the Development Server
 
 npm run dev
