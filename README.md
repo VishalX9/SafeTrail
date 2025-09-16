@@ -11,8 +11,8 @@ Follow these steps to set up the project locally.
 
 Clone with Git:
 
-git clone https://github.com/VishalX9/SafeTrail.git
-cd SafeTrail
+git clone https://github.com/VishalX9/SafeTrail.git<br>
+cd SafeTrail<br>
 Or download as a ZIP from the green “Code” button on GitHub and extract it.
 
 ### 2. Install Dependencies
