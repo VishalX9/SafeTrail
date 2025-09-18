@@ -3,9 +3,11 @@
 SafeTrail is a  safety-focused web app for travellers.  
 This repository contains the source code.
 
+- 🚀 **Live Deployment:** [View Deployment](https://safetrail-3.onrender.com/)
 ## 🚀 Getting Started  
 
 Follow these steps to set up the project locally.
+
 
 ### 1. Clone or Download the Repository  
 
